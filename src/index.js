@@ -1,5 +1,4 @@
 const express = require('express');
-const {connectionURL,db} =require('../configurations/configuration');
 const signup = require('../routes/signup');
 const login = require('../routes/login');
 const authUser=require('../routes/auth');
@@ -42,10 +41,9 @@ app.use(function (req, res, next) {
 app.use(cookieParser());
 app.use(session({
     secret:'secretissecret',
-    resave:true,
-    saveUninitialized:true,
-    store:new MongoStore({url:`${connectionURL}/${db}`,
-    collection: 'sessions' }),
+    resave:false,
+    saveUninitialized:false,
+    store:new MongoStore({url:'mongodb+srv://akhie:sspmb143@cluster0-zn2vn.mongodb.net/Userprofile'}),
     cookie: { httpOnly: false, maxAge: 86400000 }
 }))
 

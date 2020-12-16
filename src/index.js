@@ -42,9 +42,10 @@ app.use(function (req, res, next) {
 app.use(cookieParser());
 app.use(session({
     secret:'secretissecret',
-    resave:false,
-    saveUninitialized:false,
-    store:new MongoStore({url:`${connectionURL}/${db}` }),
+    resave:true,
+    saveUninitialized:true,
+    store:new MongoStore({url:`${connectionURL}/${db}`,
+    collection: 'sessions' }),
     cookie: { httpOnly: false, maxAge: 86400000 }
 }))
 

@@ -1,4 +1,5 @@
 const express = require('express');
+const {connectionURL,db} =require('../configurations/configuration');
 const signup = require('../routes/signup');
 const login = require('../routes/login');
 const authUser=require('../routes/auth');
@@ -22,7 +23,7 @@ const port =process.env.PORT || 3001
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'https://user-registration-react.herokuapp.com');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -43,7 +44,7 @@ app.use(session({
     secret:'secretisalwayssecret',
     resave:false,
     saveUninitialized:false,
-    store:new MongoStore({url:'mongodb+srv://akhie:sspmb143@cluster0-zn2vn.mongodb.net/Userprofile'}),
+    store:new MongoStore({url:`${connectionURL}/${db}` }),
     cookie: { httpOnly: false, maxAge: 86400000 }
 }))
 

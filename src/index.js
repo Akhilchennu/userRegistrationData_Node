@@ -40,7 +40,7 @@ app.use(function (req, res, next) {
 
 app.use(cookieParser());
 app.use(session({
-    secret:'secretissecret',
+    secret:'secretisalwayssecret',
     resave:false,
     saveUninitialized:false,
     store:new MongoStore({url:'mongodb+srv://akhie:sspmb143@cluster0-zn2vn.mongodb.net/Userprofile'}),
